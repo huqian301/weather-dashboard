@@ -30,7 +30,7 @@ $(document).ready(function () {
                 const date = new Date(r.current.dt * 1000).toLocaleDateString();
                 $('#display').empty();
                 $('.card-deck').empty(); 
-                
+
                 const $uvIndex = $('<p>').text('UV Index: ' + r.current.uvi);
                 console.log(r.current.uvi);
                 if (r.current.uvi < 3) {
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 $('#display').append($newDiv);
 
 
-                for(i = 0; i < 6;i++){
+                for(i = 1; i < 7;i++){
                     const $newDiv1 = $('<div>').addClass('card').attr('style','width: 18rem;');
                     const $newDiv2 = $('<div>').addClass('card-body');
                     const newDate = new Date(r.daily[i].dt * 1000).toLocaleDateString();
