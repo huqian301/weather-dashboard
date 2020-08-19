@@ -1,4 +1,16 @@
+## Student name: 
+Qian Hu
+
+## Instructor: 
+Emmanuel Jucaban
+
+## Github links:
+https://github.com/huqian301/weather-dashboard <br>
 https://huqian301.github.io/weather-dashboard/
+
+
+## Output
+<img src="./img/ezgif.com-video-to-gif.gif">
 
 
 # 06 Server-Side APIs: Weather Dashboard
