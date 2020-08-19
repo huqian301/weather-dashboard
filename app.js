@@ -19,9 +19,6 @@ $(document).ready(function () {
 
     }
     renderHist();
-
-
-
     // render last;
 
     const last_element = JSON.parse(localStorage.getItem("cities"));
@@ -57,13 +54,13 @@ $(document).ready(function () {
                 const $uvIndex = $('<p>').text('UV Index: ' + r.current.uvi);
                 console.log(r.current.uvi);
                 if (r.current.uvi < 3) {
-                    $uvIndex.attr('class', 'low');
+                    $uvIndex.css('color', 'green');
                 } else if (r.current.uvi >= 3 && $uvIndex < 6) {
-                    $uvIndex.attr('class', 'moderate');
+                    $uvIndex.css('color', 'yellow');
                 } else if (r.current.uvi >= 6 && $uvIndex < 8) {
-                    $uvIndex.attr('class', 'high');
+                    $uvIndex.css('color', 'orange');
                 } else {
-                    $uvIndex.attr('class', 'veryHigh');
+                    $uvIndex.css('color', 'red');
                 }
 
                 const $icon = $('<img>').attr('src', `https://openweathermap.org/img/wn/${r.current.weather[0].icon}@2x.png`);
@@ -92,32 +89,11 @@ $(document).ready(function () {
                     $newDiv2.append($newDiv1,newDate,title,icon,temp,hum);
                     $('#fiveBox').append($newDiv2);
 
-
-
                 }
-
-
-
 
             })
         })
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     $('#search').on('click', function (event) {
         event.preventDefault();
@@ -156,13 +132,13 @@ $(document).ready(function () {
                 const $uvIndex = $('<p>').text('UV Index: ' + r.current.uvi);
                 console.log(r.current.uvi);
                 if (r.current.uvi < 3) {
-                    $uvIndex.attr('class', 'low');
+                    $uvIndex.css('color', 'green');
                 } else if (r.current.uvi >= 3 && $uvIndex < 6) {
-                    $uvIndex.attr('class', 'moderate');
+                    $uvIndex.css('color', 'yellow');
                 } else if (r.current.uvi >= 6 && $uvIndex < 8) {
-                    $uvIndex.attr('class', 'high');
+                    $uvIndex.css('color', 'orange');
                 } else {
-                    $uvIndex.attr('class', 'veryHigh');
+                    $uvIndex.css('color', 'red');
                 }
 
                 const $icon = $('<img>').attr('src', `https://openweathermap.org/img/wn/${r.current.weather[0].icon}@2x.png`);
@@ -204,12 +180,7 @@ $(document).ready(function () {
     })
 
 
-
-
     // 2nd condition;
-
-
-
     $('.past_search').on('click', function (event) {
         event.preventDefault();
         console.log('I am hit')
@@ -246,13 +217,13 @@ $(document).ready(function () {
                 const $uvIndex = $('<p>').text('UV Index: ' + r.current.uvi);
                 console.log(r.current.uvi);
                 if (r.current.uvi < 3) {
-                    $uvIndex.attr('class', 'low');
+                    $uvIndex.css('color', 'green');
                 } else if (r.current.uvi >= 3 && $uvIndex < 6) {
-                    $uvIndex.attr('class', 'moderate');
+                    $uvIndex.css('color', 'yellow');
                 } else if (r.current.uvi >= 6 && $uvIndex < 8) {
-                    $uvIndex.attr('class', 'high');
+                    $uvIndex.css('color', 'orange');
                 } else {
-                    $uvIndex.attr('class', 'veryHigh');
+                    $uvIndex.css('color', 'red');
                 }
 
                 const $icon = $('<img>').attr('src', `https://openweathermap.org/img/wn/${r.current.weather[0].icon}@2x.png`);
@@ -280,19 +251,8 @@ $(document).ready(function () {
 
                     $newDiv2.append($newDiv1,newDate,title,icon,temp,hum);
                     $('#fiveBox').append($newDiv2);
-
-
-
                 }
-
-
-
-
             })
         })
-
     })
-
-
-
 });
