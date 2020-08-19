@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
+    <title>Weather Dashboard</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
@@ -24,18 +24,23 @@
 
         <h1> Weather Dashboard</h1>
         <!-- Search Bar -->
-        <aside class="col ">
+        <aside>
             <div class="searchBox">
                 ​<form class="form-inline md-form mr-auto mb-4">
                     <input id="searchInput" class="form-control mr-sm-2  mr-auto" type="text"
                         placeholder="Search" aria-label="Search">
                     <button id="search" class="btn btn-outline-warning btn-rounded btn-sm my-0"
                         type="submit">Search</button>
+
+                        <div id="history"></div>
                 </form>
+                
+                
             </div>
         </aside>
         <!-- Weather Section -->
-        <div id="display"></div>
+        <div id="display" class="col"></div>
+        <div id="hourly" class="col"></div>
         <div class="card-deck" id="fiveBox"></div>
     </div>
 

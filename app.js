@@ -1,14 +1,24 @@
 $(document).ready(function () {
 
     const $search = $('#searchInput');
-
+    const cities = [];
+    
+    // ready read localstorage
+    search_Hist = JSON.parse(localStorage.getItem("cities"));
+    // 
+    console.log(search_Hist);
+    for (i = 0; i < search_Hist.length; i++ ){
+        const $cities = $('<button>').addClass('btn').text(search_Hist[i]);
+        $("#history").append($cities);
+    }
+    
 
 
     $(document).on('click', '#search', function (event) {
         event.preventDefault();
         
         const apiKey = 'b457a2be511f2ae77119bf5182a1ce41';
-        const search = $search.val();
+        const search = $search.val().trim().toLowerCase();
         console.log(search);
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}`,
@@ -69,12 +79,48 @@ $(document).ready(function () {
                     $newDiv2.append($newDiv1,newDate,title,icon,temp,hum);
                     $('#fiveBox').append($newDiv2);
 
+                
 
                 }
+
 
             })
 
 
+            // const search = $search.val().trim().toLowerCase();
+            
+           
+            
+            // function storeCities() {
+            //   localStorage.setItem("cities", JSON.stringify(cities));
+            // }
+            // storeCities();
+
+
+            function init(){
+                const search_res = $search.val().trim().toLowerCase();
+                cities.push(search_res);
+                localStorage.setItem("cities", JSON.stringify(cities));
+
+
+            }
+
+            init();
+
+
+                    
+            function renderHistory(){
+                // $("#history").empty();
+                search_Hist = JSON.parse(localStorage.getItem("cities"));
+                for (i = 0; i < search_Hist.length; i++ ){
+                    const $cities = $('<button>').addClass(btn).text(search_Hist[i]);
+                    $("#history").append($cities);
+                }
+            }
+            renderHistory()
         })
+
     })
+
+
 });
