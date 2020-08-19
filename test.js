@@ -1,51 +1,30 @@
 $(document).ready(function () {
 
-    let $search = $('#searchInput').text();
-    console.log($search);
-    
+    // const $search = $('#searchInput').val();
+
     const cities = [];
 
     // ready read localstorage
-
-    // function renderHist() {
-    //     search_Hist = JSON.parse(localStorage.getItem("cities"));
-    //     console.log(search_Hist);
-    //     for (i = 0; i < search_Hist.length; i++) {
-    //         const $cities = $('<button>').addClass('btn seach_res_btn').text(search_Hist[i]);
-    //         $("#history").append($cities);
-
-    //         $('.seach_res_btn').on('click', function (event) {
-    //             event.preventDefault();
-    //             console.log('I am hit!');
-    //             // extract btn text; 
-    //             const $search = $(this).text();
-    //             console.log($search);
-    //             api();
-    //         })
-    //     }
-    // }
-    // renderHist();
-
-    // btn.onClick event; 
+    
+    function renderHist() {
+        search_Hist = JSON.parse(localStorage.getItem("cities"));
+        console.log(search_Hist);
+        for (i = 0; i < search_Hist.length; i++) {
+            const $cities = $('<button>').addClass('btn').text(search_Hist[i]);
+            $("#history").append($cities);
+        }
+    }
+    renderHist();
 
 
 
 
-    $('#searchInput').on('click', function (event) {
+    $(document).on('click', '#search', function (event) {
         event.preventDefault();
-        console.log('I am hit!');
-        // extract btn text; 
-        const $search = $('#searchInput').val();
-        console.log($search);
-        // api($search);
-    })
-
-
-    function api(city) {
-
+        
         const apiKey = 'b457a2be511f2ae77119bf5182a1ce41';
-        const search = city.trim().toLowerCase();
-        // console.log(search);
+        const search = $('#searchInput').val().trim().toLowerCase();
+        console.log(search);
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}`,
             method: "GET"
@@ -56,6 +35,7 @@ $(document).ready(function () {
             const res = response;
             const lat = res.coord.lat;
             const lon = res.coord.lon;
+            
 
             $.ajax({
                 url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`,
@@ -64,7 +44,7 @@ $(document).ready(function () {
                 console.log(r);
                 const date = new Date(r.current.dt * 1000).toLocaleDateString();
                 $('#display').empty();
-                $('.card-deck').empty();
+                $('.card-deck').empty(); 
 
                 const $uvIndex = $('<p>').text('UV Index: ' + r.current.uvi);
                 console.log(r.current.uvi);
@@ -83,39 +63,39 @@ $(document).ready(function () {
 
                 const $newDiv = $('<div>').addClass('currentBox box1');
                 const $cityName = $('<h3>').text(res.name + ', ' + res.sys.country + ', ');
-                const $temp = $('<p>').text('Temperature: ' + r.current.temp + '°F');
+                const $temp = $('<p>').text('Temperature: ' + r.current.temp +'°F');
                 const $hum = $('<p>').text('Humdity: ' + res.main.humidity + '%');
                 const $windSpeed = $('<p>').text('Wind Speed: ' + res.wind.speed + ' MPH');
 
-                $newDiv.append(date, $cityName, $icon, $temp, $hum, $windSpeed, $uvIndex);
+                $newDiv.append(date,$cityName, $icon, $temp, $hum, $windSpeed, $uvIndex);
                 $('#display').append($newDiv);
 
 
-                for (i = 1; i < 7; i++) {
-                    const $newDiv1 = $('<div>').addClass('card').attr('style', 'width: 18rem;');
+                for(i = 1; i < 7;i++){
+                    const $newDiv1 = $('<div>').addClass('card').attr('style','width: 18rem;');
                     const $newDiv2 = $('<div>').addClass('card-body');
                     const newDate = new Date(r.daily[i].dt * 1000).toLocaleDateString();
                     const title = $('<h4>').addClass('card-text').text(res.name);
                     const icon = $('<img>').attr('src', `https://openweathermap.org/img/wn/${r.daily[i].weather[0].icon}@2x.png`);
-                    const temp = $('<p>').addClass('card-text').text('Temperature: ' + r.daily[i].temp.day + '°F');
+                    const temp = $('<p>').addClass('card-text').text('Temperature: ' +r.daily[i].temp.day +'°F');
                     const hum = $('<p>').addClass('card-text').text('Humdity: ' + r.daily[i].humidity + '%');
 
-
-                    $newDiv2.append($newDiv1, newDate, title, icon, temp, hum);
+                    
+                    $newDiv2.append($newDiv1,newDate,title,icon,temp,hum);
                     $('#fiveBox').append($newDiv2);
                 }
+
             })
 
             function init() {
-                const search_res = $search.val().trim().toLowerCase();
+                const search_res = $('#searchInput').val().trim().toLowerCase();
                 cities.push(search_res);
                 localStorage.setItem("cities", JSON.stringify(cities));
             }
             init();
             renderHist();
+            
+
         })
-    }
-
-
-
+    })
 });

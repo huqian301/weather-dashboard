@@ -19,19 +19,6 @@ section{
 }
 
 
-.low{
-    color: green;
-}
-.moderate{
-    color: yellow;
-}
-.high{
-    color: orange;
-}
-.veryHight{
-    color: red;
-}
-
 .box1{
     padding: 20px;
 }
